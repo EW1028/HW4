@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
 
     public event Action<int> OnScoreChanged;
     public event Action OnGameOver;
+    public event Action OnPlayerFlap;
+    public event Action OnPointScored;
+
     public bool IsPlaying { get; private set; }
     private int score = 0;
 
@@ -40,6 +43,7 @@ public class GameController : MonoBehaviour
             return;
         score++;
         OnScoreChanged?.Invoke(score);
+        OnPointScored?.Invoke();
     }
 
     public void GameOver()
@@ -55,5 +59,11 @@ public class GameController : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void PlayerFlap()
+    {
+        Debug.Log("player flap method");
+        OnPlayerFlap?.Invoke();
     }
 }
