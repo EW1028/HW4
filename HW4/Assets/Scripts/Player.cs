@@ -20,9 +20,10 @@ public class Player : MonoBehaviour
         if (_isDead)
             return;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
+            _isGrounded = false;
         }
     }
     
@@ -34,15 +35,34 @@ public class Player : MonoBehaviour
     public void Die()
     {
         _isDead = true;
-        _rb.simulated = false;
     }
+
+    private bool _isGrounded = false;
 
     private void OnCollisionEnter2D (Collision2D collision)
     {
         if (_isDead)
             return;
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = true;
+            return;
+        }
+
+        if (collision.gameObject.CompareTag("Pipe"))
+        {
+            GameController.Instance.GameOver();
+            Die();
+        }
         
-        GameController.Instance.GameOver();
-        Die();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            _isGrounded = false;
+        }
     }
 }

@@ -10,7 +10,7 @@ public class ScoreZone : MonoBehaviour
         if (scored)
             return;
 
-        if (!other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             GameController.Instance.AddPoint();
             scored = true;
