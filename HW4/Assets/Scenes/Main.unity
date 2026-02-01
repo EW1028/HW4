@@ -508,8 +508,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipePairPrefab: {fileID: 5827457507698246717, guid: e3b7f1893685e439e833543ec54df1bd, type: 3}
-  spawnInterval: 3
-  spawnX: 10
+  spawnInterval: 2
+  spawnX: 5
   minY: -1
   maxY: 1
 --- !u!4 &785047244
